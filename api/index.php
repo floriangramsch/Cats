@@ -97,6 +97,7 @@ $pdo = connect();
 // API-Endpunkte
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 $uri = trim($_SERVER['REQUEST_URI'], '/');
+$uri = str_replace('api/', '', $uri);
 
 switch ($requestMethod) {
     case 'OPTIONS':

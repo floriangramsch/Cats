@@ -24,7 +24,7 @@ const createCatDiv = (cat) => {
 };
 
 const fetchCats = async () => {
-  const response = await fetch("http://localhost:8000/cats");
+  const response = await fetch("http://134.93.64.101:8000/api/cats");
   const cats = await response.json();
   const catsDiv = document.getElementById("cats");
   catsDiv.innerHTML = "";
@@ -35,7 +35,7 @@ const fetchCats = async () => {
 };
 
 const uneat = async (ate_id) => {
-  const response = await fetch(`http://localhost:8000/uneat/${ate_id}`, {
+  const response = await fetch(`http://134.93.64.101:8000/uneat/${ate_id}`, {
     method: "DELETE",
   });
   if (response.ok) {
@@ -47,7 +47,7 @@ const uneat = async (ate_id) => {
 
 const ateToday = async (cat) => {
   const response = await fetch(
-    `http://localhost:8000/ate/today/${cat.name}`
+    `http://134.93.64.101:8000/ate/today/${cat.name}`
   );
   const ate = await response.json();
   
@@ -72,7 +72,7 @@ const ateToday = async (cat) => {
 };
 
 const feedCat = async (cat) => {
-  const response = await fetch("http://localhost:8000/feed", {
+  const response = await fetch("http://134.93.64.101:8000/feed", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -87,3 +87,14 @@ const feedCat = async (cat) => {
 };
 
 fetchCats();
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   fetch('http://api:5000/dein-endpunkt')
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log(data);
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+// });
