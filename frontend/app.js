@@ -54,6 +54,7 @@ const uneat = async (ate_id) => {
     method: "DELETE",
   });
   if (response.ok) {
+    window.location.reload();
     console.log("Kodze gegodzt!");
   } else {
     console.error("Failed to delete ate record.");
@@ -68,7 +69,6 @@ const ateToday = async (cat) => {
 
   const ateContainer = document.createElement("div");
   ate.forEach((e) => {
-    console.log(e);
     const ateDiv = document.createElement("div");
     ateDiv.id = e.id;
     ateDiv.textContent = e.time;
@@ -95,6 +95,7 @@ const feedCat = async (cat) => {
     body: JSON.stringify({ cat: cat }),
   });
   if (response.ok) {
+    window.location.reload();
     console.log("Cat fed successfully!");
   } else {
     console.error("Failed to feed cat.");
