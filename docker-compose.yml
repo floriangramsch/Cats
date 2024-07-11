@@ -1,0 +1,26 @@
+services:
+  # nginx:
+  #   image: nginx:latest
+  #   build:
+  #     context: .nginx/
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - ./html:/usr/share/nginx/html
+  api:
+    build:
+      context: api/
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    # depends_on:
+      # - nginx
+  frontend:
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "4543:8080"
+    volumes:
+      - ./frontend:/usr/src/app
