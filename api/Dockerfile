@@ -22,5 +22,9 @@ COPY .htaccess /var/www/html/.htaccess
 # Setze den ServerName um die Warnung zu unterdrücken
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
+# Setze die Berechtigungen für den Apache-Webserver
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
+
 # Exponiere Port 80 für Apache
 EXPOSE 80

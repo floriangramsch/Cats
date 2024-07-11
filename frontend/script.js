@@ -19,12 +19,12 @@ const createCatDiv = (cat) => {
   container.appendChild(name);
   container.appendChild(age);
   container.appendChild(weight);
-  if (cat.name !== 'Lucy') container.appendChild(feed);
+  if (cat.name !== "Lucy") container.appendChild(feed);
   catsDiv.appendChild(container);
 };
 
 const fetchCats = async () => {
-  const response = await fetch("http://cats.floxsite.de:2604/api/cats");
+  const response = await fetch("http://localhost:8000/api/cats");
   const cats = await response.json();
   const catsDiv = document.getElementById("cats");
   catsDiv.innerHTML = "";
@@ -35,7 +35,7 @@ const fetchCats = async () => {
 };
 
 const uneat = async (ate_id) => {
-  const response = await fetch(`http://cats.floxsite.de:2604/uneat/${ate_id}`, {
+  const response = await fetch(`http://localhost:8000/api/uneat/${ate_id}`, {
     method: "DELETE",
   });
   if (response.ok) {
@@ -47,10 +47,10 @@ const uneat = async (ate_id) => {
 
 const ateToday = async (cat) => {
   const response = await fetch(
-    `http://cats.floxsite.de:2604/ate/today/${cat.name}`
+    `http://localhost:8000/api/ate/today/${cat.name}`
   );
   const ate = await response.json();
-  
+
   const ateContainer = document.createElement("div");
   ate.forEach((e) => {
     console.log(e);
@@ -72,7 +72,7 @@ const ateToday = async (cat) => {
 };
 
 const feedCat = async (cat) => {
-  const response = await fetch("http://cats.floxsite.de:2604/feed", {
+  const response = await fetch("http://localhost:8000/api/feed", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
