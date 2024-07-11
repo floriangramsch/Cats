@@ -1,30 +1,20 @@
 # Dockerfile
-FROM php:8.2-apache
+FROM node:18
 
-# Installiere Systemabhängigkeiten und PHP-Erweiterungen
-RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    libonig-dev \
-    && docker-php-ext-install pdo pdo_mysql
+# Arbeitsverzeichnis erstellen und wechseln
+WORKDIR /usr/src/app
 
-# Aktiviere den mod_rewrite
-RUN a2enmod rewrite
+# Kopiere package.json und package-lock.json
+COPY package*.json ./
 
-# Setze das Arbeitsverzeichnis
-WORKDIR /var/www/html
+# Installiere Abhängigkeiten
+RUN npm install
 
-# Kopiere API-Code in das Image
-COPY . /var/www/html/
+# Kopiere den Rest des Codes
+COPY . .
 
-# Kopiere die .htaccess-Datei in das Image
-COPY .htaccess /var/www/html/.htaccess
+# Exponiere Port 5000
+EXPOSE 5000
 
-# Setze den ServerName um die Warnung zu unterdrücken
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-
-# Setze die Berechtigungen für den Apache-Webserver
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
-
-# Exponiere Port 80 für Apache
-EXPOSE 80
+# Startbefehl
+CMD ["npm", "start"]

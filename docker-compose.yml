@@ -1,22 +1,22 @@
 services:
-  api:
+  backend:
     build:
-      context: api/
+      context: ./api
       dockerfile: Dockerfile
     ports:
-      - "8000:80"
+      - "5000:5000"
     networks:
       - cat-network
   frontend:
     build:
-      context: frontend/
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "4543:8080"
     volumes:
       - ./frontend:/usr/src/app
     depends_on:
-      - api
+      - backend
     networks:
       - cat-network
 

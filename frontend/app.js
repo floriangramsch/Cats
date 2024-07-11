@@ -24,18 +24,33 @@ const createCatDiv = (cat) => {
 };
 
 const fetchCats = async () => {
-  const response = await fetch("http://localhost:8000/api/cats");
-  const cats = await response.json();
-  const catsDiv = document.getElementById("cats");
-  catsDiv.innerHTML = "";
-  cats.forEach((cat) => {
-    createCatDiv(cat);
-    ateToday(cat);
-  });
+  try {
+    const response = await fetch("/api/cats", {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP-Fehler! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const catsDiv = document.getElementById("cats");
+    catsDiv.innerHTML = "";
+    data.forEach((cat) => {
+      createCatDiv(cat);
+      ateToday(cat);
+    });
+  } catch (error) {
+    console.error("Fetch-Fehler:", error);
+  }
 };
 
 const uneat = async (ate_id) => {
-  const response = await fetch(`http://localhost:8000/api/uneat/${ate_id}`, {
+  const response = await fetch(`/api/uneat/${ate_id}`, {
     method: "DELETE",
   });
   if (response.ok) {
@@ -47,7 +62,7 @@ const uneat = async (ate_id) => {
 
 const ateToday = async (cat) => {
   const response = await fetch(
-    `http://localhost:8000/api/ate/today/${cat.name}`
+    `/api/ate/today/${cat.name}`
   );
   const ate = await response.json();
 
@@ -72,7 +87,7 @@ const ateToday = async (cat) => {
 };
 
 const feedCat = async (cat) => {
-  const response = await fetch("http://localhost:8000/api/feed", {
+  const response = await fetch("/api/feed", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -89,7 +104,7 @@ const feedCat = async (cat) => {
 fetchCats();
 
 // document.addEventListener('DOMContentLoaded', () => {
-//   fetch('http://api:5000/dein-endpunkt')
+//   fetch('/api/cats')
 //     .then(response => response.json())
 //     .then(data => {
 //       console.log(data);
@@ -98,3 +113,5 @@ fetchCats();
 //       console.error('Error:', error);
 //     });
 // });
+
+// window.onload = fetchCats;

@@ -1,16 +1,14 @@
 {
-    "name": "frontend",
-    "version": "1.0.0",
-    "description": "Frontend für meine API",
-    "main": "index.html",
-    "scripts": {
-      "start": "live-server --watch=frontend --no-browser --host=0.0.0.0"
-    },
-    "dependencies": {},
-    "devDependencies": {
-      "live-server": "^1.2.2"
-    },
-    "author": "",
-    "license": "ISC"
-  }
-  
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Ein einfaches Frontend-Projekt für den Docker-Container",
+  "main": "app.js",
+  "scripts": {
+    "start": "http-server -p 8080 --proxy http://backend:5000"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "author": "",
+  "license": "ISC"
+}

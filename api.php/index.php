@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 // CORS-Header hinzufügen
 // header('Access-Control-Allow-Origin: 192.168.0.121:8000');  // Erlaubt nur Anfragen von diesem Frontend-Server
 header('Access-Control-Allow-Origin: *');  // Erlaubt nur Anfragen von diesem Frontend-Server
-header('Access-Control-Allow-Methods: GET, POST, DELETE');  // Erlaubte HTTP-Methoden
+header('Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS');  // Erlaubte HTTP-Methoden
 header('Access-Control-Allow-Headers: Content-Type');  // Erlaubte Header
 
 function connect()
