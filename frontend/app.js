@@ -5,10 +5,14 @@ const createCatDiv = (cat) => {
 
   const name = document.createElement("div");
   const age = document.createElement("div");
+  const birthDate = new Date(cat.birth);
+  const year = birthDate.getFullYear();
+  const month = birthDate.getMonth()+1;
+  const day = birthDate.getDate();
   const weight = document.createElement("div");
   name.textContent = cat.name;
-  age.textContent = cat.birth;
-  weight.textContent = cat.body_weight;
+  age.textContent = `Geboren am: ${day}.${month}.${year}`
+  weight.textContent = "Wiegt: " + cat.body_weight + "kg";
 
   const feed = document.createElement("button");
   feed.textContent = `Fuettere ${cat.name}`;
@@ -71,7 +75,9 @@ const ateToday = async (cat) => {
   ate.forEach((e) => {
     const ateDiv = document.createElement("div");
     ateDiv.id = e.id;
-    ateDiv.textContent = e.time;
+    let formattedTime = new Date(e.time);
+    formattedTime = `${formattedTime.getHours()}:${formattedTime.getMinutes()}Uhr`;
+    ateDiv.textContent = formattedTime;
     const button = document.createElement("button");
     button.textContent = `X`;
     button.addEventListener("click", () => {
