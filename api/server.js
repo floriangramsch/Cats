@@ -100,6 +100,14 @@ app.delete('/api/uneat/:id', (req, res) => {
   });
 });
 
+// // Statische Dateien aus dem "frontend/public" Verzeichnis bereitstellen
+// app.use(express.static(path.join(__dirname, '../frontend/public')));
+
+// // Alle anderen Routen auf index.html umleiten
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
+// });
+
 app.listen(5000, () => {
   console.log('Server läuft auf http://localhost:5000');
 });

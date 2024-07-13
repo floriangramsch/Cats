@@ -1,3 +1,6 @@
+// import { fetchAll, fetchOne } from "./statistics.js";
+import { formatDate } from "./Helper.js";
+
 const createCatDiv = (cat) => {
   const catsDiv = document.getElementById("cats");
   const container = document.createElement("div");
@@ -17,11 +20,8 @@ const createCatDiv = (cat) => {
 
   const age = document.createElement("p");
   age.classList.add("card-text");
-  const birthDate = new Date(cat.birth);
-  const year = birthDate.getFullYear();
-  const month = birthDate.getMonth() + 1;
-  const day = birthDate.getDate();
-  age.textContent = `Geboren am: ${day}.${month}.${year}`;
+  const time = formatDate(new Date(cat.birth))
+  age.textContent = `Geboren am: ${time}`;
 
   const weight = document.createElement("p");
   weight.classList.add("card-text");
@@ -29,7 +29,13 @@ const createCatDiv = (cat) => {
 
   const feed = document.createElement("button");
   feed.textContent = `Füttere ${cat.name}`;
-  feed.classList.add("btn", "btn-primary", "mt-2", "btn-light", "black-font-color");
+  feed.classList.add(
+    "btn",
+    "btn-primary",
+    "mt-2",
+    "btn-light",
+    "black-font-color"
+  );
   feed.addEventListener("click", () => {
     feedCat(cat);
   });
@@ -43,7 +49,7 @@ const createCatDiv = (cat) => {
   catsDiv.appendChild(container);
 };
 
-const fetchCats = async () => {
+export const fetchCats = async () => {
   try {
     const response = await fetch("/api/cats", {
       method: "GET",
@@ -58,7 +64,18 @@ const fetchCats = async () => {
     }
 
     const data = await response.json();
-    const catsDiv = document.getElementById("cats");
+    let catsDiv = document.getElementById("cats");
+    if (!catsDiv) {
+      const content = document.getElementById("content");
+      catsDiv = document.createElement("div");
+      catsDiv.id = "cats";
+      catsDiv.classList.add("row");
+      const header = document.createElement("h1");
+      header.classList.add("text-center", "mb-4");
+      header.textContent = "Kodzies";
+      content.appendChild(header);
+      content.appendChild(catsDiv);
+    }
     catsDiv.innerHTML = "";
     data.forEach((cat) => {
       createCatDiv(cat);
@@ -112,6 +129,9 @@ const ateToday = async (cat) => {
 
       const button = document.createElement("button");
       button.textContent = `X`;
+      // const icon = document.createElement("i");
+      // icon.classList.add("fas", "fa-times");
+      // button.appendChild(icon);
       button.classList.add("btn", "btn-danger", "btn-sm");
       button.addEventListener("click", () => {
         uneat(e.id, cat);
@@ -138,7 +158,8 @@ const feedCat = async (cat) => {
       body: JSON.stringify({ cat: cat.name }),
     });
     if (response.ok) {
-      ateToday(cat);``
+      ateToday(cat);
+      ``;
       console.log("Katze erfolgreich gefüttert!");
     } else {
       throw new Error("Fehler beim Füttern der Katze.");
@@ -147,18 +168,3 @@ const feedCat = async (cat) => {
     console.error("FeedCat-Fehler:", error);
   }
 };
-
-fetchCats();
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   fetch('/api/cats')
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log(data);
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//     });
-// });
-
-// window.onload = fetchCats;
