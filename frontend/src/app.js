@@ -9,7 +9,7 @@ function renderContent(path) {
   const contentDiv = document.getElementById("content");
   if (path === "/zweiteSeite") {
     contentDiv.innerHTML = "";
-    // fetchAll();
+    // fetchAll(); 
     renderChart();
   } else {
     contentDiv.innerHTML = "";
