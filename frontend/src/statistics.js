@@ -100,7 +100,7 @@ export const renderChart = () => {
       });
 
       const hourlyData = Array.from({ length: 24 }, (_, hour) => {
-        const count = data.filter((e) => new Date(e.time).getHours() === hour).length;
+        const count = data.filter((e) => new Date(e.time).getHours()-1 === hour).length;
         return count;
       });
 
