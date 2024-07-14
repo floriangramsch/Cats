@@ -110,7 +110,7 @@ export const renderChart = () => {
           labels: Array.from({ length: 24 }, (_, hour) => `${hour}:00`),
           datasets: [
             {
-              label: "Fuetterungszeit?",
+              label: "Fuetterungszeiten",
               data: hourlyData,
               borderWidth: 1,
             },
