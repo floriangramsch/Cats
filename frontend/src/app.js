@@ -1,5 +1,5 @@
 import { fetchCats } from "./Feeder.js";
-import { fetchAll } from "./statistics.js";
+import { fetchAll, renderChart } from "./statistics.js";
 
 function navigateTo(path) {
   window.history.pushState({}, path, window.location.origin + path);
@@ -9,7 +9,8 @@ function renderContent(path) {
   const contentDiv = document.getElementById("content");
   if (path === "/zweiteSeite") {
     contentDiv.innerHTML = "";
-    fetchAll();
+    // fetchAll();
+    renderChart();
   } else {
     contentDiv.innerHTML = "";
     fetchCats();

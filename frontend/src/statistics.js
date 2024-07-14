@@ -51,4 +51,86 @@ const fetchAll = () => {
 
 const fetchOne = () => {};
 
+export const renderChart = () => {
+  const canvas_Wrapper = document.createElement("div");
+  const canvas_feedings = document.createElement("canvas");
+  const canvas_times = document.createElement("canvas");
+
+  fetch("/api/ate")
+    .then((response) => response.json())
+    .then((data) => {
+      let count_leo = 0;
+      let count_naseweis = 0;
+      let count_lucy = 0;
+      data.forEach((e) => {
+        switch (e.cat_name) {
+          case "Naseweis":
+            count_naseweis += 1;
+            break;
+          case "Leo":
+            count_leo += 1;
+            break;
+          case "Lucy":
+            count_lucy += 1;
+            break;
+
+          default:
+            break;
+        }
+      });
+      new Chart(canvas_feedings, {
+        type: "bar",
+        data: {
+          labels: ["Naseweis", "Leo", "Lucy"],
+          datasets: [
+            {
+              label: "# der Fuetterungen",
+              data: [count_leo, count_naseweis, count_lucy],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      const hourlyData = Array.from({ length: 24 }, (_, hour) => {
+        const count = data.filter((e) => new Date(e.time).getHours() === hour).length;
+        return count;
+      });
+
+      new Chart(canvas_times, {
+        type: "line",
+        data: {
+          labels: Array.from({ length: 24 }, (_, hour) => `${hour}:00`),
+          datasets: [
+            {
+              label: "Wann wurden sie gefuettert?",
+              data: hourlyData,
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+    });
+
+  canvas_Wrapper.appendChild(canvas_feedings);
+  canvas_Wrapper.appendChild(canvas_times);
+  const content = document.getElementById("content");
+  content.appendChild(canvas_Wrapper);
+};
+
 export { fetchAll, fetchOne };
