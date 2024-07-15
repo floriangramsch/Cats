@@ -13,3 +13,7 @@ export const formatDateTime = (time) => {
   const minutes = time.getMinutes();
   return `${day}.${month}.${year} ${hours}:${minutes}`;
 };
+
+// const Test = () => {
+//   return <p>Test</p>
+// }

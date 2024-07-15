@@ -89,6 +89,11 @@ app.post('/api/feed', (req, res) => {
   });
 });
 
+
+app.post('/api/meds', (req, res) => {
+  res.json({ message: "Hallo bebi"})
+});
+
 app.delete('/api/uneat/:id', (req, res) => {
   const { id } = req.params;
   pool.query('DELETE FROM ate WHERE id = ?', [id], (error) => {
