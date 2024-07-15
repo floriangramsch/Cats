@@ -90,7 +90,7 @@ app.post('/api/feed', (req, res) => {
 });
 
 
-app.post('/meds', (req, res) => {
+app.get('/meds', (req, res) => {
   res.json({ message: "Hallo bebi"})
 });
 
