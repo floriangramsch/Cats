@@ -1,3 +1,6 @@
+/**
+ * @function
+ * @param {DateTime} time */
 export const formatDate = (time) => {
   const year = time.getFullYear();
   const month = time.getMonth() + 1;
