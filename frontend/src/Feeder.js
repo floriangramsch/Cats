@@ -42,16 +42,18 @@ const createCatDiv = (cat) => {
 
   // gone cats..
   if (cat.name === "Lucy") {
-    const rip = document.createElement("div");
     const lucy = document.createElement("div");
     lucy.textContent = "R.I.P Lucy <3 1.4.2017-~Weihnachten 2023";
     const leonie = document.createElement("div");
     leonie.textContent = "R.I.P Leonie <3";
     const daisy = document.createElement("div");
     daisy.textContent = "Live well Daisy <3";
+    const tmp = document.createElement("div");
+    tmp.textContent = "Muddi, kannst du mir Daten nennen?";
     cardBody.appendChild(lucy);
     cardBody.appendChild(leonie);
     cardBody.appendChild(daisy);
+    cardBody.appendChild(tmp);
   } else {
     cardBody.appendChild(name);
     cardBody.appendChild(age);
