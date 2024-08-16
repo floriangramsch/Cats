@@ -47,7 +47,7 @@ const createCatDiv = (cat) => {
     const leonie = document.createElement("div");
     leonie.textContent = "R.I.P Leonie <3";
     const daisy = document.createElement("div");
-    daisy.textContent = "Live well Daisy <3";
+    daisy.textContent = "Farewell Daisy <3";
     const tmp = document.createElement("div");
     tmp.textContent = "Muddi, kannst du mir Daten nennen?";
     cardBody.appendChild(lucy);
