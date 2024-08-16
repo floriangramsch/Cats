@@ -20,7 +20,7 @@ const createCatDiv = (cat) => {
 
   const age = document.createElement("p");
   age.classList.add("card-text");
-  const time = formatDate(new Date(cat.birth))
+  const time = formatDate(new Date(cat.birth));
   age.textContent = `Geboren am: ${time}`;
 
   const weight = document.createElement("p");
@@ -40,10 +40,24 @@ const createCatDiv = (cat) => {
     feedCat(cat);
   });
 
-  cardBody.appendChild(name);
-  cardBody.appendChild(age);
-  cardBody.appendChild(weight);
-  if (cat.name !== "Lucy") cardBody.appendChild(feed);
+  // gone cats..
+  if (cat.name === "Lucy") {
+    const rip = document.createElement("div");
+    const lucy = document.createElement("div");
+    lucy.textContent = "R.I.P Lucy <3 1.4.2017-~Weihnachten 2023";
+    const leonie = document.createElement("div");
+    leonie.textContent = "R.I.P Leonie <3";
+    const daisy = document.createElement("div");
+    daisy.textContent = "Live well Daisy <3";
+    cardBody.appendChild(lucy);
+    cardBody.appendChild(leonie);
+    cardBody.appendChild(daisy);
+  } else {
+    cardBody.appendChild(name);
+    cardBody.appendChild(age);
+    cardBody.appendChild(weight);
+    cardBody.appendChild(feed);
+  }
   card.appendChild(cardBody);
   container.appendChild(card);
   catsDiv.appendChild(container);
