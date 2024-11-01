@@ -24,9 +24,9 @@ const createCatDiv = (cat) => {
   birth.textContent = `Geboren am: ${time}`;
 
   const adopted = document.createElement("p");
-  birth.classList.add("card-text");
+  adopted.classList.add("card-text");
   const adoptedTime = formatDate(new Date(cat.adopted));
-  birth.textContent = `Bekommen am: ${adoptedTime}`;
+  adopted.textContent = `Bekommen am: ${adoptedTime}`;
 
   const weight = document.createElement("p");
   weight.classList.add("card-text");

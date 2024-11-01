@@ -32,11 +32,11 @@ export const fetchOldCats = async () => {
     let catsDiv = document.getElementById("cats");
 
     const container = document.createElement("div");
-    container.id = cat.id;
+    container.id = "goneCats";
     container.classList.add("col-md-4", "mb-4");
 
     const card = document.createElement("div");
-    card.id = "goneCats";
+    card.id = "goneCatsCard";
     card.classList.add("card", "text-white", "bg-dark", "h-100");
 
     const cardBody = document.createElement("div");
