@@ -1,4 +1,4 @@
-import { formatDate } from "./Helper";
+import { formatDate } from "./Helper.js";
 
 const createOldCatDiv = (cat) => {
   const cardText = document.createElement("p");
