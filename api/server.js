@@ -74,6 +74,19 @@ app.get("/api/ate", (req, res) => {
   });
 });
 
+app.get("/api/ate/count", (req, res) => {
+  pool.query(
+    "SELECT Count(cat_name) AS feed_count, cat_name, deceased FROM ate a LEFT JOIN cat c ON c.name = a.cat_name WHERE deceased = 0 AND gave_away = 0 GROUP BY cat_name;",
+    (error, results) => {
+      if (error) {
+        res.status(500).json({ error: "Datenbankfehler: " + error.message });
+        return;
+      }
+      res.json(results);
+    }
+  );
+});
+
 app.get("/api/ate/today", (req, res) => {
   pool.query(
     "SELECT * FROM ate WHERE DATE(time) = CURDATE()",
