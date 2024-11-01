@@ -1,3 +1,5 @@
+import { formatDate } from "./Helper";
+
 const createOldCatDiv = (cat) => {
   const cardText = document.createElement("p");
   cardText.classList.add("card-text");

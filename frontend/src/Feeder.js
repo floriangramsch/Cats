@@ -1,4 +1,3 @@
-// import { fetchAll, fetchOne } from "./statistics.js";
 import { formatDate } from "./Helper.js";
 
 const createCatDiv = (cat) => {
