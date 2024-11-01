@@ -6,12 +6,13 @@ const createOldCatDiv = (cat) => {
 
   const adopted = formatDate(new Date(cat.adopted));
   const end = formatDate(new Date(cat.death));
+  const birth = formatDate(new Date(cat.birth));
   if (cat.deceased) {
     cardText.textContent = `R.I.P ${cat.name} <3 ${adopted}-${end}`;
   } else if (cat.gave_away) {
     cardText.textContent = `Farewell ${cat.name} <3 ${adopted}-${end}`;
   }
-  cardText.textContent += ` (Born ${cat.birth})`;
+  cardText.textContent += ` (Born ${birth})`;
 
   return cardText;
 };
